@@ -1,0 +1,9 @@
+<div style="height: calc(80vh);">
+    <div class="container" style="margin-top: 70px;">
+        <div class="card-columns">
+            <div class="card" *ngFor="let employee of employees">
+                <app-employee [employee]="employee"></app-employee>
+            </div>
+        </div>
+    </div>
+</div>
