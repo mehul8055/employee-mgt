@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "emp-mgt-ui"
+    }
+  },
+  "defaultProject": "emp-mgt-ui",
+  "cli": {
+    "analytics": "7575a1c2-7e35-4c5d-bd2a-e0af5f54eb7c"
+  }
 }

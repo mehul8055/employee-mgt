@@ -10,6 +10,7 @@ import { Employee } from '../employee';
 export class EmployeeListComponent implements OnInit {
 
   employees: Array<Employee>;
+  selectedEmployee: Employee;
 
   constructor(public service: EmployeeService) { }
 
@@ -17,4 +18,8 @@ export class EmployeeListComponent implements OnInit {
     this.employees = this.service.getEmployees();    
   }
 
+  notifySeeDetail(employee: Employee) : void {
+    console.log(employee);
+    this.selectedEmployee = employee;
+  }
 }
