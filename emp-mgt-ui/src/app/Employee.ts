@@ -1,17 +1,13 @@
-export class Employee {
-    public id: number;
-    public firstName: string;
-    public middleName: string;
-    public lastName: string;
-    public salary: number;
-    public address: string;
-    public mobile: number;
-    public email: string;
-    public gender: string;
-    public department: string;
-    public profile: string;
-
-    constructor(){
-        
-    }
+export interface Employee {
+    id: number;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    salary: number;
+    address: string;
+    mobile: number;
+    email: string;
+    gender: string;
+    department: string;
+    profile: string;
 }
