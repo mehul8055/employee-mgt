@@ -1,23 +1,28 @@
 <div style="height: calc(80vh);">
-    <div class="container" style="margin-top: 70px;">
-        <div class="row">
-            <div class="col-8">
-                <div class="card-columns">
-                    <div class="card" *ngFor="let employee of employees">
-                        <app-employee [employee]="employee" (notifySeeDetails)="notifySeeDetail($event)"></app-employee>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4" *ngIf="selectedEmployee">
-                <div class='card'>
-                    <div class='card-header'>
-                      {{selectedEmployee.firstName}}
-                    </div>
-                    <div class='card-body'>
-                        
-                    </div>
-                </div>
-            </div>
+  <div style="margin-top: 70px; margin-left: 50px; margin-right: 50px;">
+    <div class="row">
+      <div class="col-8">
+        <div class="card-columns">
+          <div class="card" *ngFor="let employee of employees">
+            <app-employee
+              [employee]="employee"
+              (notifySeeDetails)="notifySeeDetail($event)"
+            ></app-employee>
+          </div>
         </div>
+      </div>
+      <div class="col-4">
+        <ul class="list-group" *ngIf="selectedEmployee">
+          <li class="list-group-item">First Name : {{selectedEmployee.firstName}}</li>
+          <li class="list-group-item">Middle Name : {{selectedEmployee.middleName}}</li>
+          <li class="list-group-item">Last Name : {{selectedEmployee.lastName}}</li>
+          <li class="list-group-item">Email : {{selectedEmployee.email}}</li>
+          <li class="list-group-item">Mobile No. : {{selectedEmployee.mobile}}</li>
+          <li class="list-group-item">Department : {{selectedEmployee.department}}</li>
+          <li class="list-group-item">Salary : {{selectedEmployee.salary}}</li>
+          <li class="list-group-item">Address : {{selectedEmployee.address}}</li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
