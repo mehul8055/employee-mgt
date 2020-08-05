@@ -11,7 +11,7 @@ export class EmployeeCreateComponent implements OnInit {
 
   employee: Employee;
 
-  constructor(public service: EmployeeService) { }
+  constructor(private service: EmployeeService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +20,6 @@ export class EmployeeCreateComponent implements OnInit {
     console.log(this.employee);
     this.service.createEmployee(this.employee);
     this.employee = null;
-
   }
+  
 }
