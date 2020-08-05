@@ -1,7 +1,7 @@
-export interface Employee {
+export class Employee {
     id: number;
-    firstName: string;
-    middleName: string;
+    public firstName: string;
+    public middleName: string;
     lastName: string;
     salary: number;
     address: string;

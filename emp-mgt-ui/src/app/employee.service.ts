@@ -21,10 +21,10 @@ export class EmployeeService {
   }
 
   public getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.serviceUrl}`);;
+    return this.http.get<Employee[]>(`${this.serviceUrl}`);
   }
 
-  public createEmployee(employee: Employee) {
-    this.http.post<Employee>(this.serviceUrl, employee, httpOptions);
+  public createEmployee(employee: Employee): Observable<string> {
+    return this.http.post<string>(this.serviceUrl, employee, httpOptions);
   }
 }

@@ -9,7 +9,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeCreateComponent implements OnInit {
 
-  employee: Employee;
+  employee: Employee = new Employee();
 
   constructor(private service: EmployeeService) { }
 
@@ -18,8 +18,9 @@ export class EmployeeCreateComponent implements OnInit {
 
   createEmployee(){
     console.log(this.employee);
-    this.service.createEmployee(this.employee);
-    this.employee = null;
+    this.service.createEmployee(this.employee).subscribe(msg => {
+      console.log(msg);
+    });
   }
   
 }
