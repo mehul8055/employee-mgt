@@ -3,22 +3,22 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 
 @Component({
-  selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-
+  errorMsg: string;
   employees: Array<Employee>;
   selectedEmployee: Employee;
 
-  constructor(public service: EmployeeService) { }
+  constructor(private service: EmployeeService) { }
 
   ngOnInit() {
-    this.service.getEmployees().subscribe(employees => {
-      this.employees = employees;
-    });
-      
+    const employees$ = this.service.getEmployees();
+    employees$.subscribe(
+      employees => this.employees = employees,
+      err => this.errorMsg = err.message
+    );
   }
 
   notifySeeDetail(employee: Employee) : void {

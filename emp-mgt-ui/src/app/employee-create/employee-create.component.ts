@@ -3,7 +3,6 @@ import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
 @Component({
-  selector: 'app-employee-create',
   templateUrl: './employee-create.component.html',
   styleUrls: ['./employee-create.component.css']
 })
