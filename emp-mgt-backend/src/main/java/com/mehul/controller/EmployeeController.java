@@ -2,6 +2,7 @@ package com.mehul.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,10 +48,28 @@ public class EmployeeController {
 		return employees;
 	} 
 	
-	@DeleteMapping("/employees/id")
-	public String updateEmployee(@PathVariable("id") String id) {
-		employeeRepository.deleteById(Long.parseLong(id));
+	@DeleteMapping("/employees/{id}")
+	public String deleteEmployee(@PathVariable("id") Long id) {
+		LOGGER.debug("Employee Delete started!");
+		employeeRepository.deleteById(id);
 		return "Employee Deleted!!";
 		
+	}
+	
+	@PutMapping("/employees/{id}")
+	public String updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long id) {
+		LOGGER.debug("Employee Update started!");
+		//employeeRepository.deleteById(Long.parseLong(id));
+		Optional<Employee> employeeOptional = employeeRepository.findById(id);
+
+		if (!employeeOptional.isPresent())
+			return "Employee not found for update!!";
+
+		employee.setId(id);
+		Date today = new Date(System.currentTimeMillis());
+		employee.setLastModifiedDate(today);
+		employee.setCreatedDate(today);
+		employeeRepository.save(employee);
+		return "Employee Updated!!";
 	}
 }
