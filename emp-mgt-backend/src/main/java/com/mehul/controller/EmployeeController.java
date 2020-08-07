@@ -72,4 +72,11 @@ public class EmployeeController {
 		employeeRepository.save(employee);
 		return "Employee Updated!!";
 	}
+	
+	@GetMapping("/employees/{id}")
+	public Employee getEmployee(@PathVariable("id") Long id) {
+		LOGGER.debug("Employee fetching started!");
+		Optional<Employee> optional = employeeRepository.findById(id);
+		return optional.get();
+	}
 }
