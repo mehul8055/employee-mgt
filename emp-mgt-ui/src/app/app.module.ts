@@ -9,9 +9,11 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { EmployeeCreateComponent } from './employee-create/employee-create.component';
+import { EmployeeTilesComponent } from './employee-list/employee-tiles.component';
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,11 @@ import { EmployeeComponent } from './employee/employee.component';
     FooterComponent,
     HomeComponent,
     AboutComponent,
+    EmployeeTilesComponent,
+    EmployeeEditComponent,
+    EmployeeComponent,
     EmployeeListComponent,
-    EmployeeCreateComponent,
-    EmployeeComponent
+    EmployeeDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,9 @@ import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
 @Component({
-  templateUrl: './employee-create.component.html',
-  styleUrls: ['./employee-create.component.css']
+  templateUrl: './employee-edit.component.html'
 })
-export class EmployeeCreateComponent implements OnInit {
+export class EmployeeEditComponent implements OnInit {
 
   employee: Employee = new Employee();
 

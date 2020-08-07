@@ -3,9 +3,10 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 
 @Component({
-  templateUrl: './employee-list.component.html'
+  templateUrl: './employee-tiles.component.html',
+  styleUrls: ['./employee-tiles.component.css']
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeTilesComponent implements OnInit {
   errorMsg: string;
   employees: Array<Employee>;
   selectedEmployee: Employee;
