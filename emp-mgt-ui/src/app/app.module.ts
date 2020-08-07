@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { EmployeeTilesComponent } from './employee-list/employee-tiles.component';
 import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
-import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 
@@ -24,7 +23,6 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
     AboutComponent,
     EmployeeTilesComponent,
     EmployeeEditComponent,
-    EmployeeComponent,
     EmployeeListComponent,
     EmployeeDetailComponent
   ],

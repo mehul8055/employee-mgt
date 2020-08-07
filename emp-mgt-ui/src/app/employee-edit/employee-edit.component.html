@@ -1,123 +1,143 @@
-<div class="container" style="margin-top: 70px;">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="shadow p-4 mb-4 bg-white">
-                <form>
-                    <div class="form-group row">
-                        <label for="labelFirstName" class="col-sm-3 col-form-label">First Name</label>
-                        <div class="col-sm-9">
-                            <input 
-                            [(ngModel)]="employee.firstName" 
-                            type="text" 
-                            class="form-control" 
-                            name="inputFirstName" 
-                            placeholder="First Name">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelMiddleName" class="col-sm-3 col-form-label">Middle Name</label>
-                        <div class="col-sm-9">
-                            <input [(ngModel)]="employee.middleName" type="text" class="form-control" name="inputMiddleName" placeholder="Middle Name">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelLastName" class="col-sm-3 col-form-label">Last Name</label>
-                        <div class="col-sm-9">
-                            <input [(ngModel)]="employee.lastName" type="text" class="form-control" name="inputLastName" placeholder="Last Name">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelGender" class="col-sm-3 col-form-label">Gender</label>
-                        <div class="col-sm-9">
-                            <div class="form-check form-check-inline">
-                                <input 
-                                [(ngModel)]="employee.gender" 
-                                class="form-check-input" 
-                                type="radio" 
-                                name="inlineRadioOptions" 
-                                value="Female">
-                                <label class="form-check-label" for="genderFemale">Female</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input 
-                                [(ngModel)]="employee.gender" 
-                                class="form-check-input" 
-                                type="radio" 
-                                name="inlineRadioOptions" 
-                                value="Male">
-                                <label class="form-check-label" for="genderMale">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input 
-                                [(ngModel)]="employee.gender" 
-                                class="form-check-input" 
-                                type="radio" 
-                                name="inlineRadioOptions" 
-                                value="Other">
-                                <label class="form-check-label" for="genderOther">Other</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelMobileNumber" class="col-sm-3 col-form-label">Mob. Number</label>
-                        <div class="col-sm-9">
-                            <input [(ngModel)]="employee.mobile" type="number" class="form-control" name="inputMobileNumber"
-                                placeholder="Mobile Number">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelEmail" class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                            <input [(ngModel)]="employee.email" type="email" class="form-control" name="inputEmail" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelSalary" class="col-sm-3 col-form-label">Salary</label>
-                        <div class="col-sm-9">
-                            <input [(ngModel)]="employee.salary" type="number" class="form-control" name="inputSalary" placeholder="Salary">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelDepartment" class="col-sm-3 col-form-label">Department</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" name="selectDepartment" [(ngModel)]="employee.department">
-                                <option>Sales</option>
-                                <option>Marketing</option>
-                                <option>Reaserch And Development</option>
-                                <option>Human Resource</option>
-                                <option>Information Tehnology</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelAddress" class="col-sm-3 col-form-label">Address</label>
-                        <div class="col-sm-9">
-                            <textarea 
-                            [(ngModel)]="employee.address" 
-                            class="form-control" 
-                            rows="3" 
-                            placeholder="Address"
-                            name="textareaAdd"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="labelProfile" class="col-sm-3 col-form-label">Profile</label>
-                        <div class="col-sm-9">
-                            <textarea 
-                            [(ngModel)]="employee.profile" 
-                            class="form-control" 
-                            rows="4" 
-                            placeholder="Profile Details"
-                            name="textareProfile"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-9 offset-sm-3">
-                            <button type="submit" class="btn btn-outline-primary" (click)="createEmployee()">Create Employee</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header">
+      {{pageTitle}}
     </div>
+  
+    <div class="card-body">
+		<form novalidate id="employeeForm"
+		(ngSubmit)="saveEmployee()">
+			<div class="form-group row">
+				<label for="labelFirstName" class="col-sm-2 col-form-label">First Name</label>
+				<div class="col-sm-6">
+					<input 
+					[(ngModel)]="employee.firstName" 
+					type="text" 
+					class="form-control" 
+					name="inputFirstName" 
+					placeholder="First Name">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelMiddleName" class="col-sm-2 col-form-label">Middle Name</label>
+				<div class="col-sm-6">
+					<input [(ngModel)]="employee.middleName" type="text" class="form-control" name="inputMiddleName" placeholder="Middle Name">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelLastName" class="col-sm-2 col-form-label">Last Name</label>
+				<div class="col-sm-6">
+					<input [(ngModel)]="employee.lastName" type="text" class="form-control" name="inputLastName" placeholder="Last Name">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelGender" class="col-sm-2 col-form-label">Gender</label>
+				<div class="col-sm-6">
+					<div class="form-check form-check-inline">
+						<input 
+						[(ngModel)]="employee.gender" 
+						class="form-check-input" 
+						type="radio" 
+						name="inlineRadioOptions" 
+						value="Female">
+						<label class="form-check-label" for="genderFemale">Female</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input 
+						[(ngModel)]="employee.gender" 
+						class="form-check-input" 
+						type="radio" 
+						name="inlineRadioOptions" 
+						value="Male">
+						<label class="form-check-label" for="genderMale">Male</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input 
+						[(ngModel)]="employee.gender" 
+						class="form-check-input" 
+						type="radio" 
+						name="inlineRadioOptions" 
+						value="Other">
+						<label class="form-check-label" for="genderOther">Other</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelMobileNumber" class="col-sm-2 col-form-label">Mob. Number</label>
+				<div class="col-sm-6">
+					<input [(ngModel)]="employee.mobile" type="number" class="form-control" name="inputMobileNumber"
+						placeholder="Mobile Number">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelEmail" class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-6">
+					<input [(ngModel)]="employee.email" type="email" class="form-control" name="inputEmail" placeholder="Email">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelSalary" class="col-sm-2 col-form-label">Salary</label>
+				<div class="col-sm-6">
+					<input [(ngModel)]="employee.salary" type="number" class="form-control" name="inputSalary" placeholder="Salary">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelDepartment" class="col-sm-2 col-form-label">Department</label>
+				<div class="col-sm-6">
+                    <select class="form-control" name="selectDepartment" [(ngModel)]="employee.department">
+						<option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelAddress" class="col-sm-2 col-form-label">Address</label>
+				<div class="col-sm-6">
+					<textarea 
+					[(ngModel)]="employee.address" 
+					class="form-control" 
+					rows="3" 
+					placeholder="Address"
+					name="textareaAdd"></textarea>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="labelProfile" class="col-sm-2 col-form-label">Profile</label>
+				<div class="col-sm-6">
+					<textarea 
+					[(ngModel)]="employee.profile" 
+					class="form-control" 
+					rows="4" 
+					placeholder="Profile Details"
+					name="textareProfile"></textarea>
+				</div>
+			</div>
+			<div class="form-group row mb-2">
+				<div class="offset-md-2 col-md-4">
+				  <button class="btn btn-primary mr-3"
+						  style="width:80px;"
+						  type="submit"
+				  >
+					Save
+				  </button>
+				  <button class="btn btn-outline-secondary mr-3"
+						  style="width:80px;"
+						  type="button"
+						  title="Cancel your edits"
+						  [routerLink]="['/employees']">
+					Cancel
+				  </button>
+				  <button class="btn btn-outline-warning"
+						  style="width:80px"
+						  type="button"
+						  title="Delete this product"
+						  (click)="deleteEmployee()">
+					Delete
+				  </button>
+				</div>
+			  </div>
+		</form>
+    </div>
+</div>
+
+<div class="alert alert-danger"
+*ngIf="errorMessage">{{errorMessage}}
 </div>

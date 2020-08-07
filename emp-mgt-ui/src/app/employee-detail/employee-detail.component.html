@@ -1,3 +1,77 @@
-<div style="margin-top: 70px; margin-left: 50px; margin-right: 50px;">
-<p>employee-detail works!</p>
-</div>
+<div class="card">
+    <div class="card-header"
+         *ngIf="employee">
+      {{'Employee Details ' + ": " + employee.firstName + employee.lastName}}
+    </div>
+  
+    <div class="card-body"
+         *ngIf="employee">
+  
+      <div class="row">
+  
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-3">First Name:</div>
+            <div class="col-md-6">{{employee.firstName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Middle Name:</div>
+            <div class="col-md-6">{{employee.middleName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Last Name:</div>
+            <div class="col-md-6">{{employee.lastName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Mobile:</div>
+            <div class="col-md-6">{{employee.mobile}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Emial:</div>
+            <div class="col-md-6">{{employee.email}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Salary:</div>
+            <div class="col-md-6">{{employee.salary|currency:"USD":"symbol"}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Department:</div>
+            <div class="col-md-6">{{employee.department}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">Address:</div>
+            <div class="col-md-6">{{employee.address}}</div>
+          </div>
+        </div>
+  
+        <div class="col-md-4"
+             *ngIf="employee.gender">
+          <img class="center-block img-responsive"
+               [style.height.px]="150"
+               [style.margin.px]="2"
+               src="{{ 'assets/images/' + employee.gender + '.png'}}"
+               [title]="employee.firstName">
+        </div>
+      </div>
+  
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <button class="btn btn-outline-secondary mr-3"
+                  style="width:80px"
+                  (click)="onBack()">
+            <i class="fa fa-chevron-left"></i> Back
+          </button>
+          <button class="btn btn-outline-primary"
+                  style="width:80px"
+                  [routerLink]="['/employees', employee.id, 'edit']">
+            Edit
+          </button>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="alert alert-danger"
+         *ngIf="errorMessage">{{errorMessage}}
+    </div>
+  </div>

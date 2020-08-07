@@ -1,60 +1,71 @@
-<div style="margin-top: 70px; margin-left: 50px; margin-right: 50px;">
-  <div class="card">
-        <div class="card-header">
-          Employees Information
-          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group mr-2" role="group" aria-label="List">
-              <button [routerLink]="['/employees']" type="button" class="btn btn-secondary">List</button>
-            </div>
-            <div class="btn-group mr-2" role="group" aria-label="Tiles">
-              <button [routerLink]="['/employees-tiles']" type="button" class="btn btn-secondary">Tiles</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table mb-0"
-                   *ngIf="employees && employees.length">
-              <thead style="color: #337AB7;">
-                <tr>
-                  <th>Id#</th>
-                  <th>Full Name</th>
-                  <th>Mobile</th>
-                  <th>Email</th>
-                  <th>Department</th>
-                  <th>Salary</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let employee of employees">
-                  <td>{{employee.id}}</td>
-                  <td>
-                    <a [routerLink]="['/employees', employee.id]">
-                      {{ employee.firstName }} {{employee.lastName}}
-                    </a>
-                  </td>
-                  <td>{{ employee.mobile }}</td>
-                  <td>{{ employee.email }}</td>
-                  <td>{{ employee.department }} </td>
-                  <td>{{ employee.salary | currency:"USD":"symbol":"1.2-2" }}</td>
-                  <td>
-                    <button class="btn btn-outline-primary btn-sm"
-                            [routerLink]="['/employees', employee.id, 'edit']">
-                      Edit
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      
-        </div>
+<div class="card">
+  <div class="card-header">
+    Employees Information
+    <div
+      class="btn-toolbar float-right"
+      role="toolbar"
+      aria-label="Toolbar with button groups"
+    >
+      <div class="btn-group mr-2" role="group" aria-label="List">
+        <button
+          [routerLink]="['/employees']"
+          type="button"
+          class="btn btn-secondary"
+        >
+          List
+        </button>
       </div>
-      
-      <div *ngIf="errorMsg"
-           class="alert alert-danger">
-        Error: {{ errorMsg }}
+      <div class="btn-group mr-2" role="group" aria-label="Tiles">
+        <button
+          [routerLink]="['/employees-tiles']"
+          type="button"
+          class="btn btn-secondary"
+        >
+          Tiles
+        </button>
       </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table mb-0" *ngIf="employees && employees.length">
+        <thead style="color: #337ab7;">
+          <tr>
+            <th>Id#</th>
+            <th>Full Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+            <td>
+              <a [routerLink]="['/employees', employee.id]">
+                {{ employee.firstName }} {{ employee.lastName }}
+              </a>
+            </td>
+            <td>{{ employee.mobile }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.department }}</td>
+            <td>{{ employee.salary | currency: "USD":"symbol":"1.2-2" }}</td>
+            <td>
+              <button
+                class="btn btn-outline-primary btn-sm"
+                [routerLink]="['/employees', employee.id, 'edit']"
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
+<div *ngIf="errorMsg" class="alert alert-danger">Error: {{ errorMsg }}</div>

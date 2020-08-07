@@ -1,44 +1,26 @@
-<div style="margin-top: 70px; margin-left: 50px; margin-right: 50px;">
-  <div class="card">
-    <div class="card-header">
-      Employees Information
-      <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="List">
-          <button [routerLink]="['/employees']" type="button" class="btn btn-secondary">List</button>
-        </div>
-        <div class="btn-group mr-2" role="group" aria-label="Tiles">
-          <button [routerLink]="['/employees-tiles']" type="button" class="btn btn-secondary">Tiles</button>
+<div class="card">
+  <div class="card-header">
+    Employees Information
+    <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="List">
+        <button [routerLink]="['/employees']" type="button" class="btn btn-secondary">List</button>
+      </div>
+      <div class="btn-group mr-2" role="group" aria-label="Tiles">
+        <button [routerLink]="['/employees-tiles']" type="button" class="btn btn-secondary">Tiles</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-columns ">
+      <div class="card shadow p-1 mb-2 bg-white" *ngFor="let employee of employees">
+        <img class="card-img-top" src="{{ 'assets/images/' + employee.gender + '.png'}}" width="100px" height="200px" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title">{{employee.firstName}} {{employee.lastName}}</h4>
+          <p class="card-text">{{employee.profile}}</p>
+          <button [routerLink]="['/employees', employee.id]" type="button" class="btn btn-outline-primary">See Profile</button>
         </div>
       </div>
     </div>
-    
-    <div class="card-body">
-      
-        
-          <div class="card-columns ">
-            <div class="card shadow p-1 mb-2 bg-white" *ngFor="let employee of employees">
-              <app-employee
-                [employee]="employee"
-                (notifySeeDetails)="notifySeeDetail($event)"
-              ></app-employee>
-            </div>
-          </div>
-        
-    
-    </div>
   </div>
-  <div class="alert alert-danger" role="alert" *ngIf="errorMsg">{{errorMsg}}</div>
-
-  
-      <ul class="list-group shadow p-2 mb-2 bg-white" *ngIf="selectedEmployee">
-        <li class="list-group-item">First Name : {{selectedEmployee.firstName}}</li>
-        <li class="list-group-item">Middle Name : {{selectedEmployee.middleName}}</li>
-        <li class="list-group-item">Last Name : {{selectedEmployee.lastName}}</li>
-        <li class="list-group-item">Email : {{selectedEmployee.email}}</li>
-        <li class="list-group-item">Mobile No. : {{selectedEmployee.mobile}}</li>
-        <li class="list-group-item">Department : {{selectedEmployee.department}}</li>
-        <li class="list-group-item">Salary : {{selectedEmployee.salary}}</li>
-        <li class="list-group-item">Address : {{selectedEmployee.address}}</li>
-      </ul>
- 
 </div>
+<div class="alert alert-danger" role="alert" *ngIf="errorMsg">{{errorMsg}}</div>
