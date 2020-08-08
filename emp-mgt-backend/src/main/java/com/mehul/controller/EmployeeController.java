@@ -29,15 +29,11 @@ public class EmployeeController {
 	@Autowired 
 	private EmployeeRepository employeeRepository;
 	
-	@PostMapping("/employees")
-	public String createEmployee(@RequestBody Employee employee) {
-		LOGGER.debug("Saving Employee started...");
-		Date today = new Date(System.currentTimeMillis());
-		employee.setCreatedDate(today);
-		employee.setLastModifiedDate(today);
-		employeeRepository.save(employee);
-		LOGGER.debug("Saving Employee completed...");
-		return "Employee Created!! ";
+	@GetMapping("/employees/{id}")
+	public Employee getEmployee(@PathVariable("id") Long id) {
+		LOGGER.debug("Employee fetching started!");
+		Optional<Employee> optional = employeeRepository.findById(id);
+		return optional.get();
 	}
 	
 	@GetMapping("/employees")
@@ -48,35 +44,38 @@ public class EmployeeController {
 		return employees;
 	} 
 	
-	@DeleteMapping("/employees/{id}")
-	public String deleteEmployee(@PathVariable("id") Long id) {
-		LOGGER.debug("Employee Delete started!");
-		employeeRepository.deleteById(id);
-		return "Employee Deleted!!";
-		
-	}
-	
 	@PutMapping("/employees/{id}")
-	public String updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long id) {
+	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long id) {
 		LOGGER.debug("Employee Update started!");
 		//employeeRepository.deleteById(Long.parseLong(id));
 		Optional<Employee> employeeOptional = employeeRepository.findById(id);
 
 		if (!employeeOptional.isPresent())
-			return "Employee not found for update!!";
+			return employee;
 
 		employee.setId(id);
 		Date today = new Date(System.currentTimeMillis());
 		employee.setLastModifiedDate(today);
 		employee.setCreatedDate(today);
-		employeeRepository.save(employee);
-		return "Employee Updated!!";
+		Employee savedEmployee = employeeRepository.save(employee);
+		return savedEmployee;
 	}
 	
-	@GetMapping("/employees/{id}")
-	public Employee getEmployee(@PathVariable("id") Long id) {
-		LOGGER.debug("Employee fetching started!");
-		Optional<Employee> optional = employeeRepository.findById(id);
-		return optional.get();
+	@PostMapping("/employees")
+	public Employee createEmployee(@RequestBody Employee employee) {
+		LOGGER.debug("Saving Employee started...");
+		Date today = new Date(System.currentTimeMillis());
+		employee.setCreatedDate(today);
+		employee.setLastModifiedDate(today);
+		Employee savedEmployee = employeeRepository.save(employee);
+		LOGGER.debug("Saving Employee completed...");
+		return savedEmployee;
+	}
+
+	@DeleteMapping("/employees/{id}")
+	public String deleteEmployee(@PathVariable("id") Long id) {
+		LOGGER.debug("Employee Delete started!");
+		employeeRepository.deleteById(id);
+		return "Employee Deleted!!";
 	}
 }
