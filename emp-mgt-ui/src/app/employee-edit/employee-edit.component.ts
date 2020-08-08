@@ -12,6 +12,7 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeEditComponent implements OnInit {
   pageTitle = 'Employee Edit';
   errorMessage: string;
+  successMessage: string;
   
   employee: Employee = new Employee();
   private sub: Subscription;
@@ -37,16 +38,15 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   getemployee(id: number): void {
-    
     if (id === 0) {
       this.employee.id = 0;
       this.displayEmployee(this.employee)
     }else{
       this.service.getEmployee(id)
-        .subscribe({
-          next: (employee: Employee) => this.displayEmployee(employee),
-          error: err => this.errorMessage = err
-      });
+        .subscribe(
+          (employee: Employee) => this.displayEmployee(employee),
+          err => this.errorMessage = err
+      );
     }
   }
 
@@ -66,16 +66,13 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   deleteEmployee(): void {
-    if (this.employee.id === 0) {
-      // Don't delete, it was never saved.
-      this.onSaveComplete();
-    } else {
+    if (this.employee.id != 0) {
       if (confirm(`Really delete the employee : ${this.employee.firstName}?`)) {
         this.service.deleteEmployee(this.employee.id)
-          .subscribe({
-            next: () => this.onSaveComplete(),
-            error: err => this.errorMessage = err
-          });
+          .subscribe(
+            () => this.onSaveComplete('Employee Deleted successfully !'),
+            err => this.errorMessage = err
+          );
       }
     }
   }
@@ -85,20 +82,22 @@ export class EmployeeEditComponent implements OnInit {
 
     if (emp.id === 0) {
       this.service.createEmployee(emp)
-        .subscribe({
-          next: () => this.onSaveComplete(),
-          error: err => this.errorMessage = err
-        });
+        .subscribe(
+          (savedEmp: Employee) => this.onSaveComplete('Employee saved successfully !'),
+          err => this.errorMessage = err
+        );
     } else {
       this.service.updateEmployee(emp)
-        .subscribe({
-          next: () => this.onSaveComplete(),
-          error: err => this.errorMessage = err
-        });
+        .subscribe(
+          (savedEmp: Employee) => this.onSaveComplete("Employee updated successfully !"),
+          err => this.errorMessage = err
+        );
     }
   }
 
-  onSaveComplete(): void {
+  onSaveComplete(msg: string): void {
+    this.successMessage = msg;
+    this.errorMessage = null;
     this.router.navigate(['/employees']);
   }
 }

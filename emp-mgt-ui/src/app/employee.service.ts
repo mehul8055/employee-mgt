@@ -45,23 +45,13 @@ export class EmployeeService {
   }
 
   //Create a new Employee
-  public createEmployee(employee: Employee): Observable<string> {
+  public createEmployee(employee: Employee): Observable<Employee> {
     const url = `${this.serviceUrl}`;
-    return this.http.post<string>(url, employee, httpOptions)
+    return this.http.post<Employee>(url, employee, httpOptions)
     .pipe(
-      tap(data => console.log('createEmployee : ' + JSON.stringify(data))),
+      tap(data => console.log('Create a New Employee : ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
-  }
-
-  //Delete Employee
-  deleteEmployee(id: number): Observable<{}> {
-    const url = `${this.serviceUrl}/${id}`;
-    return this.http.delete<Employee>(url, httpOptions)
-      .pipe(
-        tap(data => console.log('deleteEmployee: ' + id)),
-        catchError(this.handleError)
-      );
   }
 
   //Update employee by Id
@@ -69,9 +59,18 @@ export class EmployeeService {
     const url = `${this.serviceUrl}/${employee.id}`;
     return this.http.put<Employee>(url, employee, httpOptions)
       .pipe(
-        tap(() => console.log('updateEmployee: ' + employee.id)),
-        // Return the Employee on an update
+        tap(() => console.log('Update an Employee for Id = : ' + employee.id)),
         map(() => employee),
+        catchError(this.handleError)
+      );
+  }
+  
+  //Delete Employee
+  deleteEmployee(id: number): Observable<string> {
+    const url = `${this.serviceUrl}/${id}`;
+    return this.http.delete<string>(url)
+      .pipe(
+        tap(data => console.log('Delete an Employee for Id = : ' + data)),
         catchError(this.handleError)
       );
   }
