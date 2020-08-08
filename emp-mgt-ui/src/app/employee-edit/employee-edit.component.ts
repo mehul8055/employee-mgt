@@ -12,15 +12,11 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeEditComponent implements OnInit {
   pageTitle = 'Employee Edit';
   errorMessage: string;
+  
   employee: Employee = new Employee();
   private sub: Subscription;
 
-  departments: ['Information Technology', 
-                'Artificial Intellegence', 
-                'Sales', 
-                'Marketing', 
-                'Human Resource'
-              ];
+  departments: Array<string>;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -41,23 +37,30 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   getemployee(id: number): void {
+    
     if (id === 0) {
       this.employee.id = 0;
+      this.displayEmployee(this.employee)
+    }else{
+      this.service.getEmployee(id)
+        .subscribe({
+          next: (employee: Employee) => this.displayEmployee(employee),
+          error: err => this.errorMessage = err
+      });
     }
-    this.service.getEmployee(id)
-      .subscribe({
-        next: (employee: Employee) => this.displayEmployee(employee),
-        error: err => this.errorMessage = err
-    });
   }
 
   displayEmployee(employee: Employee): void {
-
-    this.employee = employee;
-
-    if (this.employee.id === 0) {
+    this.departments = ['Information Technology', 
+    'Artificial Intellegence', 
+    'Sales', 
+    'Marketing', 
+    'Human Resource'
+  ];
+   if (this.employee.id === 0) {
       this.pageTitle = 'Add employee';
     } else {
+      this.employee = employee;
       this.pageTitle = `Edit employee: ${this.employee.firstName}`;
     }
   }

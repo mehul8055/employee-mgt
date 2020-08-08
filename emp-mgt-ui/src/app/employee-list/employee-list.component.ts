@@ -19,9 +19,4 @@ export class EmployeeListComponent implements OnInit {
       err => this.errorMsg = err.message
     );
   }
-
-  notifySeeDetail(employee: Employee) : void {
-    console.log(employee);
-    this.selectedEmployee = employee;
-  }
 }

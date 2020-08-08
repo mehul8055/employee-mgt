@@ -125,10 +125,10 @@
 						  [routerLink]="['/employees']">
 					Cancel
 				  </button>
-				  <button class="btn btn-outline-warning"
+				  <button [disabled]="employee.id == 0" class="btn btn-outline-warning"
 						  style="width:80px"
 						  type="button"
-						  title="Delete this product"
+						  title="Delete this employee"
 						  (click)="deleteEmployee()">
 					Delete
 				  </button>
@@ -138,6 +138,4 @@
     </div>
 </div>
 
-<div class="alert alert-danger"
-*ngIf="errorMessage">{{errorMessage}}
-</div>
+<div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}</div>
