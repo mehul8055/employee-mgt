@@ -76,6 +76,6 @@ public class EmployeeController {
 	public String deleteEmployee(@PathVariable("id") Long id) {
 		LOGGER.debug("Employee Delete started!");
 		employeeRepository.deleteById(id);
-		return "Employee Deleted!!";
+		return "{\"msg\": \"Employee Deleted!!\"}";
 	}
 }
