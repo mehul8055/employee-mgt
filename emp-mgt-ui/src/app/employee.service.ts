@@ -70,7 +70,7 @@ export class EmployeeService {
     const url = `${this.serviceUrl}/${id}`;
     return this.http.delete<string>(url)
       .pipe(
-        tap(data => console.log('Delete an Employee for Id = : ' + data)),
+        tap(() => console.log('Delete an Employee for Id = : ' + id)),
         catchError(this.handleError)
       );
   }

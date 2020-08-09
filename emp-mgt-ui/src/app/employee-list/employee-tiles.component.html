@@ -13,11 +13,12 @@
   <div class="card-body">
     <div class="card-columns ">
       <div class="card shadow p-1 mb-2 bg-white" *ngFor="let employee of employees">
-        <img class="card-img-top" src="{{ 'assets/images/' + employee.gender + '.png'}}" width="100px" height="200px" alt="Card image">
+        <img class="card-img-top" src="{{ 'assets/images/' + employee.gender + '.png'}}" width="90px" height="180px" alt="Card image">
         <div class="card-body">
-          <h4 class="card-title">{{employee.firstName}} {{employee.lastName}}</h4>
+          <h5 class="card-title">{{employee.firstName}} {{employee.lastName}}</h5>
+          <a [routerLink]="['/employees', employee.id]">{{ employee.email }}</a>
           <p class="card-text">{{employee.profile}}</p>
-          <button [routerLink]="['/employees', employee.id]" type="button" class="btn btn-outline-primary">See Profile</button>
+          <button [routerLink]="['/employees', employee.id, 'edit']" type="button" class="btn btn-outline-primary">Edit</button>
         </div>
       </div>
     </div>
